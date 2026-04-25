@@ -17,4 +17,21 @@
     <string name="signin_dha_text">Don\'t have an account?</string>
     <string name="signin_signup_text">Sign Up</string>
 
+    <!--    signup screen texts-->
+    <string name="signup_main_text">Create Account</string>
+    <string name="signup_sub_text">Join Smart Task Manager</string>
+    <string name="signup_fullname_text">Full Name</string>
+    <string name="signup_fullname_hint_text">Mahinda Chandrapala</string>
+    <string name="signup_email_text">Email</string>
+    <string name="signup_email_hint_text">you@gmail.com</string>
+    <string name="signup_password_text">Password</string>
+    <string name="signup_password_hint_text">your password</string>
+    <string name="signup_password_conf_text">Confirm Password</string>
+    <string name="signup_password_conf_hint_text">your password</string>
+    <string name="signup_agreement_text">I agree to the Term of Service and Privacy Policy</string>
+    <string name="signup_create_account_text">Create Account</string>
+    <string name="signup_dha_text">Already have an account?</string>
+    <string name="signup_signup_text">Sign In</string>
+
+
 </resources>
