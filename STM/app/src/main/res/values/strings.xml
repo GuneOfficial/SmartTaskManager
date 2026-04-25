@@ -4,4 +4,17 @@
     <!--    splash screen texts-->
     <string name="splash_main_text">Smart Task Manager</string>
     <string name="splash_sub_text">Organize. Accomplish. Succeed.</string>
+
+    <!--    signin screen texts-->
+    <string name="signin_main_text">Welcome Back</string>
+    <string name="signin_sub_text">Sign In to your Account</string>
+    <string name="signin_email_text">Email</string>
+    <string name="signin_email_hint_text">you@gmail.com</string>
+    <string name="signin_password_text">Password</string>
+    <string name="signin_password_hint_text">your password</string>
+    <string name="signin_forgot_password_text">Forgot Password?</string>
+    <string name="signin_signin_text">Sign In</string>
+    <string name="signin_dha_text">Don\'t have an account?</string>
+    <string name="signin_signup_text">Sign Up</string>
+
 </resources>
