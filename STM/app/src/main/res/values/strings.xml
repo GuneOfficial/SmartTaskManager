@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SmartTaskManager</string>
+
+    <!--    splash screen texts-->
+    <string name="splash_main_text">Smart Task Manager</string>
+    <string name="splash_sub_text">Organize. Accomplish. Succeed.</string>
 </resources>
