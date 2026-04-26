@@ -98,7 +98,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 dueDateTextView.setVisibility(View.GONE);
             }
 
-            // strike through if completed
             if (task.getStatus() == CreateTaskViewModel.TaskStatus.COMPLETED) {
                 titleTextView.setPaintFlags(titleTextView.getPaintFlags() | android.graphics.Paint.STRIKE_THRU_TEXT_FLAG);
             } else {
@@ -117,7 +116,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                     priorityChip.setChipBackgroundColorResource(android.R.color.holo_green_light);
                     priorityChip.setTextColor(Color.WHITE);
                     break;
-                default: // Medium
+                default:
                     priorityChip.setChipBackgroundColorResource(android.R.color.holo_orange_light);
                     priorityChip.setTextColor(Color.WHITE);
                     break;

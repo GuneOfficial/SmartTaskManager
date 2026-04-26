@@ -97,7 +97,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         taskAdapter = new TaskAdapter(task -> {
             Intent intent = new Intent(DashboardActivity.this, TaskDetailsActivity.class);
-            intent.putExtra("taskId", task.getId()); // String now
+            intent.putExtra("taskId", task.getId());
             taskLauncher.launch(intent);
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

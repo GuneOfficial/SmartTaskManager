@@ -57,7 +57,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
             return insets;
         });
 
-        // bind views
         taskTitleTextView   = findViewById(R.id.textView14);
         taskDescTextView    = findViewById(R.id.textView16);
         taskDueDateTextView = findViewById(R.id.taskDetailsDueDateValue);
@@ -74,7 +73,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
         ImageView closeButton = findViewById(R.id.taskDetailsCloseButton);
         closeButton.setOnClickListener(v -> finish());
 
-        // observe state
         viewModel.getState().observe(this, state -> {
             switch (state) {
                 case LOADING:
@@ -117,7 +115,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
             }
         });
 
-        // mark as complete checkbox
         markCompleteCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             Task current = viewModel.getTask().getValue();
             if (current == null) return;
@@ -131,7 +128,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
             }
         });
 
-        // edit task button - pass the full task as JSON so the edit screen can pre-fill
         editTaskButton.setOnClickListener(v -> {
             Task current = viewModel.getTask().getValue();
             if (current == null) return;
@@ -140,7 +136,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
             startActivityForResult(intent, 1);
         });
 
-        // delete task button
         deleteTaskButton.setOnClickListener(v -> {
             new AlertDialog.Builder(this)
                     .setTitle("Delete Task")
@@ -150,7 +145,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
                     .show();
         });
 
-        // load task
         String taskId = getIntent().getStringExtra("taskId");
         if (taskId == null) {
             Toast.makeText(this, "Task not found.", Toast.LENGTH_SHORT).show();
@@ -163,7 +157,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        // refresh task details after editing
         if (requestCode == 1 && resultCode == RESULT_OK) {
             String taskId = getIntent().getStringExtra("taskId");
             if (taskId != null) {
@@ -181,7 +174,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
             taskDescTextView.setText("No description.");
         }
 
-        // priority chip
         priorityChip.setText(task.getPriority());
         switch (task.getPriority()) {
             case "High":
@@ -200,7 +192,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
         categoryChip.setText(task.getCategory());
 
-        // due date
         if (task.getDueDate() > 0) {
             SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
             taskDueDateTextView.setText(sdf.format(new Date(task.getDueDate())));
@@ -208,11 +199,9 @@ public class TaskDetailsActivity extends AppCompatActivity {
             taskDueDateTextView.setText("No due date");
         }
 
-        // created on
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
         taskCreatedOnTextView.setText(sdf.format(new Date(task.getCreatedAt())));
 
-        // mark complete checkbox
         boolean completed = task.getStatus() == CreateTaskViewModel.TaskStatus.COMPLETED;
         markCompleteCheckBox.setOnCheckedChangeListener(null);
         markCompleteCheckBox.setChecked(completed);

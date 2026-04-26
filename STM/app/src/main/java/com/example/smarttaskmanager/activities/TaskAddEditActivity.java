@@ -48,7 +48,6 @@ public class TaskAddEditActivity extends AppCompatActivity {
     private String selectedPriorityChip;
     private String selectedCategoryChip;
 
-    // if we're editing, this holds the existing task
     private Task existingTask = null;
 
     @Override
@@ -62,7 +61,6 @@ public class TaskAddEditActivity extends AppCompatActivity {
             return insets;
         });
 
-        // ---- Bind views ----
         headerTextView = findViewById(R.id.headerTextView);
         taskTitleInput = findViewById(R.id.aeTaskTitleTextView);
         taskDescInput = findViewById(R.id.aeTaskDescTextView);
@@ -79,27 +77,23 @@ public class TaskAddEditActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this).get(CreateTaskViewModel.class);
 
-        // default selections
         updatePriorityChips("Medium");
         updateCategoryChips("Personal");
 
         Intent intent = getIntent();
 
         if (intent.hasExtra("taskData")) {
-            // --- EDIT MODE ---
             headerTextView.setText("Edit Task");
             taskCreateButton.setText("Update Task");
 
             String taskJson = intent.getStringExtra("taskData");
             existingTask = new Gson().fromJson(taskJson, Task.class);
 
-            // pre-fill the form with existing task data
             taskTitleInput.setText(existingTask.getTitle());
             taskDescInput.setText(existingTask.getDescription());
             updatePriorityChips(existingTask.getPriority());
             updateCategoryChips(existingTask.getCategory());
 
-            // set the date picker if there's a due date
             if (existingTask.getDueDate() > 0) {
                 Calendar cal = Calendar.getInstance();
                 cal.setTimeInMillis(existingTask.getDueDate());
@@ -111,11 +105,9 @@ public class TaskAddEditActivity extends AppCompatActivity {
             }
 
         } else {
-            // --- CREATE MODE ---
             headerTextView.setText("New Task");
         }
 
-        // observe state for both create and edit
         viewModel.getCreateTaskState().observe(this, state -> {
             switch (state) {
                 case LOADING:
@@ -154,25 +146,21 @@ public class TaskAddEditActivity extends AppCompatActivity {
             }
         });
 
-        // priority chip clicks
         taskPriorityChip1.setOnClickListener(v -> updatePriorityChips(taskPriorityChip1.getText().toString()));
         taskPriorityChip2.setOnClickListener(v -> updatePriorityChips(taskPriorityChip2.getText().toString()));
         taskPriorityChip3.setOnClickListener(v -> updatePriorityChips(taskPriorityChip3.getText().toString()));
 
-        // category chip clicks
         taskCategoryChip1.setOnClickListener(v -> updateCategoryChips(taskCategoryChip1.getText().toString()));
         taskCategoryChip2.setOnClickListener(v -> updateCategoryChips(taskCategoryChip2.getText().toString()));
         taskCategoryChip3.setOnClickListener(v -> updateCategoryChips(taskCategoryChip3.getText().toString()));
         taskCategoryChip4.setOnClickListener(v -> updateCategoryChips(taskCategoryChip4.getText().toString()));
 
-        // create / update button
         taskCreateButton.setOnClickListener(v -> {
             String title = taskTitleInput.getText() != null ? taskTitleInput.getText().toString() : "";
             String description = taskDescInput.getText() != null ? taskDescInput.getText().toString() : "";
             String priority = selectedPriorityChip != null ? selectedPriorityChip : "Medium";
             String category = selectedCategoryChip != null ? selectedCategoryChip : "Personal";
 
-            // get date from date picker
             Calendar cal = Calendar.getInstance();
             cal.set(taskDatePicker.getYear(), taskDatePicker.getMonth(), taskDatePicker.getDayOfMonth(), 0, 0, 0);
             cal.set(Calendar.MILLISECOND, 0);
@@ -187,11 +175,9 @@ public class TaskAddEditActivity extends AppCompatActivity {
             }
         });
 
-        // close button
         ImageView closeButton = findViewById(R.id.addEditCloseButton);
         closeButton.setOnClickListener(v -> finish());
 
-        // cancel button
         Button cancelButton = findViewById(R.id.addEditCancelButton);
         cancelButton.setOnClickListener(v -> finish());
     }
