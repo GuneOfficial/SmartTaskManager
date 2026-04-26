@@ -23,7 +23,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
             android:text="TextView"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +36,7 @@
             android:layout_marginTop="5dp"
             android:text="TextView"
             android:textColor="#6B7394"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/taskTitleTextView"
             app:layout_constraintStart_toStartOf="@+id/taskTitleTextView"
             app:layout_constraintTop_toBottomOf="@+id/taskTitleTextView" />
@@ -53,13 +54,15 @@
                 android:id="@+id/taskPriorityChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="High" />
+                android:text="High"
+                android:textSize="12sp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/taskCategoryChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Work" />
+                android:text="Work"
+                android:textSize="12sp" />
         </com.google.android.material.chip.ChipGroup>
 
         <TextView
