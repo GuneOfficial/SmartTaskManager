@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/inter_regular"
+                android:fontFamily="@font/dancingscript_regular"
                 android:text="@string/signup_main_text"
                 android:textSize="27sp"
                 android:textStyle="bold"

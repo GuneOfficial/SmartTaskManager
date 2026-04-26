@@ -3,6 +3,7 @@ package com.example.smarttaskmanager.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -32,6 +33,16 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
+
+            }
+        });
+
+        Button signInButton = findViewById(R.id.signinButton1);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(SignInActivity.this,DashboardActivity.class));
 
             }
         });

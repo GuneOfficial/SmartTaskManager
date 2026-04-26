@@ -33,5 +33,14 @@
     <string name="signup_dha_text">Already have an account?</string>
     <string name="signup_signup_text">Sign In</string>
 
+    <!--    dashboard screen texts-->
+    <string name="dashboard_top_active_text">0 Active</string>
+    <string name="dashboard_top_sub_active_text">0 completed, 0 urgent</string>
+    <string name="dashboard_greeting_text">Hello, </string>
+    <string name="dashboard_cheering_text">Complete your tasks and stay productive.</string>
+    <string name="dashboard_search_text">Search tasks...</string>
+    <string name="dashboard_active_chip_text">Active</string>
+    <string name="dashboard_completed_chip_text">Completed</string>
+    <string name="dashboard_more_chip_text">More</string>
 
 </resources>

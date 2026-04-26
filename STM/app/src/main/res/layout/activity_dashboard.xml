@@ -1,10 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.DashboardActivity">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activities.DashboardActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#3B5998">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView3"
+                app:srcCompat="@drawable/menu" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/dashboard_top_active_text"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/dashboard_top_sub_active_text"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView3"
+                app:layout_constraintStart_toStartOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/dashboard_greeting_text"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_cheering_text"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:background="#FFFFFF"
+                android:queryHint="@string/dashboard_search_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+            </SearchView>
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/searchView"
+                app:layout_constraintTop_toBottomOf="@+id/searchView"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:checkable="true"
+                    android:checked="true"
+                    android:text="@string/dashboard_active_chip_text"
+                    app:chipCornerRadius="20dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/dashboard_completed_chip_text"
+                    app:chipCornerRadius="20dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:checkable="true"
+                    android:text="@string/dashboard_more_chip_text"
+                    app:chipCornerRadius="20dp"
+                    app:chipIcon="@drawable/filter_icon" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/dashboardTaskLinerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:src="@drawable/plus_icon"
+        app:backgroundTint="#3B5998" />
+
+</FrameLayout>

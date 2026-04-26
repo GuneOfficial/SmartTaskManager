@@ -1,6 +1,10 @@
 package com.example.smarttaskmanager.activities;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,5 +26,16 @@ public class DashboardActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        LinearLayout container = findViewById(R.id.dashboardTaskLinerLayout);
+
+        int x = 0;
+
+        while (x < 10){
+            View inflated = getLayoutInflater().inflate(R.layout.task_component, container, false);
+            container.addView(inflated);
+            x++;
+        }
+
     }
 }
