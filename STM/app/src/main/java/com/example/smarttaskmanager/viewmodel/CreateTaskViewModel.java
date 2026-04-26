@@ -22,7 +22,7 @@ public class CreateTaskViewModel extends AndroidViewModel {
         ERROR
     }
 
-    public enum TaskStatus{
+    public enum TaskStatus {
         ACTIVE,
         COMPLETED
     }
@@ -53,7 +53,7 @@ public class CreateTaskViewModel extends AndroidViewModel {
         return createdTask;
     }
 
-    public void createTask(String title, String description, String priority, String category, long dueDate){
+    public void createTask(String title, String description, String priority, String category, long dueDate) {
 
         // --- Validation ---
         if (title.trim().isEmpty()) {
@@ -79,7 +79,7 @@ public class CreateTaskViewModel extends AndroidViewModel {
 
         createTaskState.setValue(CreateTaskState.LOADING);
         long createdAt = System.currentTimeMillis();
-        Task task = new Task(sessionManager.getUser().getId(),description.trim(),createdAt,title.trim(),category.trim(),priority.trim(), TaskStatus.ACTIVE, dueDate);
+        Task task = new Task(sessionManager.getUser().getId(), description.trim(), createdAt, title.trim(), category.trim(), priority.trim(), TaskStatus.ACTIVE, dueDate);
 
         taskRepository.createTask(task, new TaskRepository.CreateTaskCallback() {
             @Override
@@ -98,7 +98,41 @@ public class CreateTaskViewModel extends AndroidViewModel {
                 });
             }
         });
-
     }
 
+    public void updateTask(Task task, String title, String description, String priority, String category, long dueDate) {
+
+        // --- Validation ---
+        if (title.trim().isEmpty()) {
+            errorMessage.setValue("Task Title is required.");
+            createTaskState.setValue(CreateTaskState.ERROR);
+            return;
+        }
+
+        createTaskState.setValue(CreateTaskState.LOADING);
+
+        task.setTitle(title.trim());
+        task.setDescription(description.trim());
+        task.setPriority(priority);
+        task.setCategory(category);
+        task.setDueDate(dueDate);
+
+        taskRepository.updateTask(task, new TaskRepository.UpdateTaskCallback() {
+            @Override
+            public void onSuccess(Task updatedTask) {
+                mainHandler.post(() -> {
+                    createdTask.setValue(updatedTask);
+                    createTaskState.setValue(CreateTaskState.SUCCESS);
+                });
+            }
+
+            @Override
+            public void onFailure(String error) {
+                mainHandler.post(() -> {
+                    errorMessage.setValue(error);
+                    createTaskState.setValue(CreateTaskState.ERROR);
+                });
+            }
+        });
+    }
 }

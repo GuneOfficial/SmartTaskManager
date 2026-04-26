@@ -25,6 +25,7 @@ import com.example.smarttaskmanager.dto.Task;
 import com.example.smarttaskmanager.viewmodel.CreateTaskViewModel;
 import com.example.smarttaskmanager.viewmodel.TaskDetailsViewModel;
 import com.google.android.material.chip.Chip;
+import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -126,18 +127,17 @@ public class TaskDetailsActivity extends AppCompatActivity {
             if (isChecked && !alreadyCompleted) {
                 viewModel.markAsCompleted();
             } else if (!isChecked && alreadyCompleted) {
-                // keep it checked if already completed (don't allow unchecking)
                 markCompleteCheckBox.setChecked(true);
             }
         });
 
-        // edit task button
+        // edit task button - pass the full task as JSON so the edit screen can pre-fill
         editTaskButton.setOnClickListener(v -> {
             Task current = viewModel.getTask().getValue();
             if (current == null) return;
             Intent intent = new Intent(TaskDetailsActivity.this, TaskAddEditActivity.class);
-            intent.putExtra("taskId", current.getId());
-            startActivity(intent);
+            intent.putExtra("taskData", new Gson().toJson(current));
+            startActivityForResult(intent, 1);
         });
 
         // delete task button
@@ -151,7 +151,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
         });
 
         // load task
-
         String taskId = getIntent().getStringExtra("taskId");
         if (taskId == null) {
             Toast.makeText(this, "Task not found.", Toast.LENGTH_SHORT).show();
@@ -161,10 +160,21 @@ public class TaskDetailsActivity extends AppCompatActivity {
         viewModel.loadTask(taskId);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // refresh task details after editing
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            String taskId = getIntent().getStringExtra("taskId");
+            if (taskId != null) {
+                viewModel.loadTask(taskId);
+            }
+        }
+    }
+
     private void populateTask(Task task) {
         taskTitleTextView.setText(task.getTitle());
 
-        // description
         if (task.getDescription() != null && !task.getDescription().isEmpty()) {
             taskDescTextView.setText(task.getDescription());
         } else {
@@ -188,7 +198,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
                 break;
         }
 
-        // category chip
         categoryChip.setText(task.getCategory());
 
         // due date
