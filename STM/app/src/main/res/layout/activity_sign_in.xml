@@ -108,6 +108,17 @@
                 app:layout_constraintEnd_toEndOf="@+id/signinPasswordEditText"
                 app:layout_constraintTop_toBottomOf="@+id/signinPasswordEditText" />
 
+            <ProgressBar
+                android:id="@+id/signinProgressBar"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/signinEmailEditText"
+                app:layout_constraintEnd_toEndOf="@+id/signinEmailEditText" />
+
             <EditText
                 android:id="@+id/signinEmailEditText"
                 android:layout_width="0dp"

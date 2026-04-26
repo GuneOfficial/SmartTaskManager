@@ -30,14 +30,18 @@ public class SplashActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this).get(SplashViewModel.class);
 
-        viewModel.getNavigateToNext().observe(this, shouldNavigate -> {
-            if (shouldNavigate != null && shouldNavigate) {
-                startActivity(new Intent(SplashActivity.this, SignInActivity.class));
-                finish();
+        viewModel.getNavigateTo().observe(this, destination -> {
+            if (destination == null) return;
+            Intent intent;
+            if (destination == SplashViewModel.SplashDestination.DASHBOARD) {
+                intent = new Intent(SplashActivity.this, DashboardActivity.class);
+            } else {
+                intent = new Intent(SplashActivity.this, SignInActivity.class);
             }
+            startActivity(intent);
+            finish();
         });
 
         viewModel.startTimer();
-
     }
 }

@@ -48,7 +48,6 @@ public class SignUpActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Bind views
         fullNameInput        = findViewById(R.id.signupFullNameInput);
         emailInput           = findViewById(R.id.signupEmailInput);
         passwordInput        = findViewById(R.id.signupPasswordInput);
@@ -57,10 +56,8 @@ public class SignUpActivity extends AppCompatActivity {
         createAccountButton  = findViewById(R.id.signupCreateAccountButton);
         progressBar          = findViewById(R.id.signupProgressBar);
 
-        // Init ViewModel
         viewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
 
-        // Observe state
         viewModel.getSignUpState().observe(this, state -> {
             switch (state) {
                 case LOADING:
@@ -95,11 +92,9 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        // Navigate back to Sign In
         TextView signInButton = findViewById(R.id.signupTextButton);
         signInButton.setOnClickListener(v -> finish());
 
-        // Sign Up button
         createAccountButton.setOnClickListener(v -> {
             String fullName    = fullNameInput.getText() != null ? fullNameInput.getText().toString() : "";
             String email       = emailInput.getText() != null ? emailInput.getText().toString() : "";

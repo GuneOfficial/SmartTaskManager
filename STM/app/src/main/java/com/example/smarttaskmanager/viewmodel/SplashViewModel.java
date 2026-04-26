@@ -1,23 +1,41 @@
 package com.example.smarttaskmanager.viewmodel;
 
+import android.app.Application;
 import android.os.Handler;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-public class SplashViewModel extends ViewModel {
+import com.example.smarttaskmanager.utils.SessionManager;
 
-    private MutableLiveData<Boolean> navigateToNext = new MutableLiveData<>();
+public class SplashViewModel extends AndroidViewModel {
 
-    public LiveData<Boolean> getNavigateToNext() {
-        return navigateToNext;
+    public enum SplashDestination {
+        SIGN_IN,
+        DASHBOARD
+    }
+
+    private final MutableLiveData<SplashDestination> navigateTo = new MutableLiveData<>();
+    private final SessionManager sessionManager;
+
+    public SplashViewModel(@NonNull Application application) {
+        super(application);
+        sessionManager = new SessionManager(application);
+    }
+
+    public LiveData<SplashDestination> getNavigateTo() {
+        return navigateTo;
     }
 
     public void startTimer() {
         new Handler().postDelayed(() -> {
-            navigateToNext.setValue(true);
+            if (sessionManager.isLoggedIn()) {
+                navigateTo.setValue(SplashDestination.DASHBOARD);
+            } else {
+                navigateTo.setValue(SplashDestination.SIGN_IN);
+            }
         }, 3000);
     }
-
 }

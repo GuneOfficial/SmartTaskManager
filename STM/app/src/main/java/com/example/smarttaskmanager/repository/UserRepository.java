@@ -2,6 +2,7 @@ package com.example.smarttaskmanager.repository;
 
 import com.example.smarttaskmanager.dto.User;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -12,6 +13,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.List;
 
 public class UserRepository {
 
@@ -54,4 +57,60 @@ public class UserRepository {
             }
         });
     }
+
+    public interface SignInCallback {
+        void onSuccess(User user);
+        void onFailure(String errorMessage);
+    }
+
+    public void loginUser(String email, String password, SignInCallback callback) {
+
+        String url = BASE_URL + "?email=" + email;
+
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callback.onFailure("Network error: " + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (!response.isSuccessful() || response.body() == null) {
+                    callback.onFailure("Server error: " + response.code());
+                    return;
+                }
+
+                String responseBody = response.body().string();
+
+                Type listType = new TypeToken<List<User>>() {}.getType();
+                List<User> users = gson.fromJson(responseBody, listType);
+
+                if (users == null || users.isEmpty()) {
+                    callback.onFailure("No account found with that email.");
+                    return;
+                }
+
+                User matched = null;
+                for (User u : users) {
+                    if (u.getEmail() != null && u.getEmail().equalsIgnoreCase(email)
+                            && u.getPassword() != null && u.getPassword().equals(password)) {
+                        matched = u;
+                        break;
+                    }
+                }
+
+                if (matched != null) {
+                    callback.onSuccess(matched);
+                } else {
+                    callback.onFailure("Incorrect password. Please try again.");
+                }
+            }
+        });
+    }
+
 }
