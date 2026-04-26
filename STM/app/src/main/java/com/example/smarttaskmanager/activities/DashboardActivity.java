@@ -24,6 +24,7 @@ import com.example.smarttaskmanager.R;
 import com.example.smarttaskmanager.adapters.TaskAdapter;
 import com.example.smarttaskmanager.dto.Task;
 import com.example.smarttaskmanager.utils.SessionManager;
+import com.example.smarttaskmanager.viewmodel.CreateTaskViewModel;
 import com.example.smarttaskmanager.viewmodel.DashboardViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.Chip;
@@ -76,22 +77,19 @@ public class DashboardActivity extends AppCompatActivity {
         activeChip = findViewById(R.id.dashActiveChip);
         completedChip = findViewById(R.id.dashCompletedChip);
 
-        // set greeting
         if (sessionManager.isLoggedIn() && sessionManager.getUser() != null) {
             String name = sessionManager.getUser().getFullName();
             greetingTextView.setText("Hello, " + name);
         }
 
-        // setup RecyclerView
         taskAdapter = new TaskAdapter(task -> {
             Intent intent = new Intent(DashboardActivity.this, TaskDetailsActivity.class);
-            intent.putExtra("taskId", task.getId());
+            intent.putExtra("taskId", task.getId()); // String now
             taskLauncher.launch(intent);
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(taskAdapter);
 
-        // observe load state
         viewModel.getLoadState().observe(this, state -> {
             switch (state) {
                 case LOADING:
@@ -110,7 +108,6 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-        // observe filtered task list
         viewModel.getFilteredTasks().observe(this, tasks -> {
             taskAdapter.setTasks(tasks);
 
@@ -131,7 +128,6 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-        // chip listeners
         activeChip.setOnClickListener(v -> {
             activeChip.setChecked(true);
             completedChip.setChecked(false);
@@ -144,7 +140,6 @@ public class DashboardActivity extends AppCompatActivity {
             viewModel.setStatusFilter("completed");
         });
 
-        // search
         SearchView searchView = findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -160,17 +155,14 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-        // bottom sheet filter
         Chip moreChip = findViewById(R.id.dashMoreChip);
         moreChip.setOnClickListener(v -> showFilterBottomSheet());
 
-        // FAB
         FloatingActionButton addTaskButton = findViewById(R.id.fabAddTask);
         addTaskButton.setOnClickListener(v ->
                 taskLauncher.launch(new Intent(DashboardActivity.this, TaskAddEditActivity.class))
         );
 
-        // load tasks
         viewModel.loadTasks();
     }
 
@@ -187,7 +179,6 @@ public class DashboardActivity extends AppCompatActivity {
         CheckBox shoppingCb = sheetView.findViewById(R.id.checkBox7);
         CheckBox healthCb = sheetView.findViewById(R.id.checkBox8);
 
-        // dismiss applies filters
         dialog.setOnDismissListener(d -> {
             List<String> priorities = new ArrayList<>();
             if (highCb.isChecked()) priorities.add("High");
@@ -213,7 +204,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         int active = 0, completed = 0, urgent = 0;
         for (Task t : all) {
-            if (t.getStatus() == com.example.smarttaskmanager.viewmodel.CreateTaskViewModel.TaskStatus.COMPLETED) {
+            if (t.getStatus() == CreateTaskViewModel.TaskStatus.COMPLETED) {
                 completed++;
             } else {
                 active++;

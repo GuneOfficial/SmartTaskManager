@@ -137,9 +137,13 @@ public class TaskRepository {
         void onFailure(String error);
     }
 
-    public void deleteTask(int taskId, DeleteTaskCallback callback) {
+    public void deleteTask(String taskId, DeleteTaskCallback callback) {
+
+        String url = BASE_URL + "/" + taskId;
+        android.util.Log.d("TaskRepo", "DELETE url: " + url);
+
         Request request = new Request.Builder()
-                .url(BASE_URL + "/" + taskId)
+                .url(url)
                 .delete()
                 .build();
 
@@ -151,6 +155,7 @@ public class TaskRepository {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                android.util.Log.d("TaskRepo", "DELETE response code: " + response.code());
                 if (response.isSuccessful()) {
                     callback.onSuccess();
                 } else {

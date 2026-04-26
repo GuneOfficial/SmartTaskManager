@@ -29,7 +29,7 @@ public class DashboardViewModel extends AndroidViewModel {
     private List<Task> allTasks = new ArrayList<>();
 
     private String searchQuery = "";
-    private String statusFilter = "active"; // "active" or "completed"
+    private String statusFilter = "active";
     private List<String> priorityFilters = new ArrayList<>();
     private List<String> categoryFilters = new ArrayList<>();
 
@@ -101,25 +101,21 @@ public class DashboardViewModel extends AndroidViewModel {
 
         for (Task task : allTasks) {
 
-            // status filter
             if (statusFilter.equals("active")) {
                 if (task.getStatus() == CreateTaskViewModel.TaskStatus.COMPLETED) continue;
             } else {
                 if (task.getStatus() != CreateTaskViewModel.TaskStatus.COMPLETED) continue;
             }
 
-            // search filter
             if (!searchQuery.isEmpty()) {
                 String title = task.getTitle() != null ? task.getTitle().toLowerCase() : "";
                 if (!title.contains(searchQuery)) continue;
             }
 
-            // priority filter
             if (!priorityFilters.isEmpty()) {
                 if (!priorityFilters.contains(task.getPriority())) continue;
             }
 
-            // category filter
             if (!categoryFilters.isEmpty()) {
                 if (!categoryFilters.contains(task.getCategory())) continue;
             }
@@ -136,7 +132,7 @@ public class DashboardViewModel extends AndroidViewModel {
 
     public void refreshTaskInList(Task updatedTask) {
         for (int i = 0; i < allTasks.size(); i++) {
-            if (allTasks.get(i).getId() == updatedTask.getId()) {
+            if (updatedTask.getId().equals(allTasks.get(i).getId())) {
                 allTasks.set(i, updatedTask);
                 break;
             }
@@ -144,9 +140,9 @@ public class DashboardViewModel extends AndroidViewModel {
         applyFilters();
     }
 
-    public void removeTaskFromList(int taskId) {
+    public void removeTaskFromList(String taskId) {
         for (int i = 0; i < allTasks.size(); i++) {
-            if (allTasks.get(i).getId() == taskId) {
+            if (taskId.equals(allTasks.get(i).getId())) {
                 allTasks.remove(i);
                 break;
             }
