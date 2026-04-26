@@ -100,16 +100,17 @@
             <com.google.android.material.chip.ChipGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/searchView"
                 app:layout_constraintTop_toBottomOf="@+id/searchView"
+                app:layout_constraintVertical_bias="0.0"
                 app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip"
+                    android:id="@+id/dashActiveChip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -119,7 +120,7 @@
                     app:chipCornerRadius="20dp" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/aeTaskCatChip2"
+                    android:id="@+id/dashCompletedChip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
@@ -127,11 +128,11 @@
                     app:chipCornerRadius="20dp" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/aeTaskCatChip3"
+                    android:id="@+id/dashMoreChip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:checkable="true"
+                    android:checkable="false"
                     android:text="@string/dashboard_more_chip_text"
                     app:chipCornerRadius="20dp"
                     app:chipIcon="@drawable/filter_icon" />

@@ -43,6 +43,18 @@
     <string name="dashboard_completed_chip_text">Completed</string>
     <string name="dashboard_more_chip_text">More</string>
 
+    <!--    dashboard bottomsheet screen texts-->
+    <string name="dashboard_bs_title_text">Filters</string>
+    <string name="dashboard_bs_prio_text">Priority</string>
+    <string name="dashboard_bs_high_text">High</string>
+    <string name="dashboard_bs_medium_text">Medium</string>
+    <string name="dashboard_bs_low_text">Low</string>
+    <string name="dashboard_bs_cate_text">Category</string>
+    <string name="dashboard_bs_work_text">Work</string>
+    <string name="dashboard_bs_perso_text">Personal</string>
+    <string name="dashboard_bs_shop_text">Shopping</string>
+    <string name="dashboard_bs_heal_text">Health</string>
+
     <!--    add/edit task screen texts-->
     <string name="task_ae_header_text">New Task</string>
     <string name="task_ae_title_text">Task Title</string>
@@ -73,5 +85,6 @@
     <string name="task_mark_complete_text">Mark as Completed</string>
     <string name="task_mark_edit_task_text">Edit Task</string>
     <string name="task_mark_delete_task_text">Delete Task</string>
+
 
 </resources>

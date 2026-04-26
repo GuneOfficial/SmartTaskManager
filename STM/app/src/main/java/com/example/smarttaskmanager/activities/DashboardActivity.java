@@ -14,6 +14,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.smarttaskmanager.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.chip.Chip;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -30,6 +32,17 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
         LinearLayout container = findViewById(R.id.dashboardTaskLinerLayout);
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        View nview = getLayoutInflater().inflate(R.layout.bottom_sheet_layout, null);
+
+        Chip moreChip = findViewById(R.id.dashMoreChip);
+        moreChip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.setContentView(nview);
+                dialog.show();
+            }
+        });
 
         int x = 0;
 
