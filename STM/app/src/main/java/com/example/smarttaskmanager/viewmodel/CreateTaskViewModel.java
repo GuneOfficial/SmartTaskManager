@@ -71,7 +71,7 @@ public class CreateTaskViewModel extends AndroidViewModel {
             createTaskState.setValue(CreateTaskState.ERROR);
             return;
         }
-        if (sessionManager.isLoggedIn()) {
+        if (!sessionManager.isLoggedIn()) {
             errorMessage.setValue("No user found!");
             createTaskState.setValue(CreateTaskState.ERROR);
             return;
