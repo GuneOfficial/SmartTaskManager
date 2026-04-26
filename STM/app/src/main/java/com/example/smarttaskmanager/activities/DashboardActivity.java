@@ -35,6 +35,14 @@ public class DashboardActivity extends AppCompatActivity {
 
         while (x < 10){
             View inflated = getLayoutInflater().inflate(R.layout.task_component, container, false);
+            inflated.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    startActivity(new Intent(DashboardActivity.this, TaskDetailsActivity.class));
+
+                }
+            });
             container.addView(inflated);
             x++;
         }

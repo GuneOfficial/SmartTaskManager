@@ -63,5 +63,15 @@
     <string name="task_ae_createtask_button_text">Create Task</string>
     <string name="task_ae_cancel_button_text">Cancel</string>
 
+    <!--    task details screen texts-->
+    <string name="task_header_text">Task Details</string>
+    <string name="task_title_text">Review Quarterly Report</string>
+    <string name="task_description_text">Description</string>
+    <string name="task_duedate_text">Due Date</string>
+    <string name="task_tags_text">Tags</string>
+    <string name="task_createdon_text">Created on</string>
+    <string name="task_mark_complete_text">Mark as Completed</string>
+    <string name="task_mark_edit_task_text">Edit Task</string>
+    <string name="task_mark_delete_task_text">Delete Task</string>
 
 </resources>
