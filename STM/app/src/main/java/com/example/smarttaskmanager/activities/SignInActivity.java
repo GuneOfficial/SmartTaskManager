@@ -43,6 +43,7 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 startActivity(new Intent(SignInActivity.this,DashboardActivity.class));
+                finish();
 
             }
         });

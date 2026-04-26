@@ -43,4 +43,25 @@
     <string name="dashboard_completed_chip_text">Completed</string>
     <string name="dashboard_more_chip_text">More</string>
 
+    <!--    add/edit task screen texts-->
+    <string name="task_ae_header_text">New Task</string>
+    <string name="task_ae_title_text">Task Title</string>
+    <string name="task_ae_title_hint_text">Enter task title.....</string>
+    <string name="task_ae_desc_text">Description (Optional)</string>
+    <string name="task_ae_desc_hint_text">Enter task details....</string>
+    <string name="task_ae_priority_text">Priority</string>
+    <string name="task_ae_priority1_text">Low</string>
+    <string name="task_ae_priority2_text">Medium</string>
+    <string name="task_ae_priority3_text">High</string>
+    <string name="task_ae_category_text">Category</string>
+    <string name="task_ae_category1_text">Work</string>
+    <string name="task_ae_category2_text">Personal</string>
+    <string name="task_ae_category3_text">Shopping</string>
+    <string name="task_ae_category4_text">Health</string>
+    <string name="task_ae_duedate_text">Due date (Optional)</string>
+    <string name="task_ae_duedate_hint_text">mm/dd/yyyy</string>
+    <string name="task_ae_createtask_button_text">Create Task</string>
+    <string name="task_ae_cancel_button_text">Cancel</string>
+
+
 </resources>
