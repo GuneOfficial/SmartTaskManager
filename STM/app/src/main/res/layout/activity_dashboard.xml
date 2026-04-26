@@ -19,7 +19,7 @@
             android:background="#3B5998">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/dashSettingButton"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="24dp"

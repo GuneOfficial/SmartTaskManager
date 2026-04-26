@@ -15,6 +15,9 @@
         android:theme="@style/Theme.SmartTaskManager"
         tools:targetApi="31">
         <activity
+            android:name=".activities.SettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.TaskDetailsActivity"
             android:exported="false" />
         <activity

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -46,6 +47,8 @@ public class DashboardActivity extends AppCompatActivity {
     private TextView activeCountTextView;
     private TextView activeSubTextView;
 
+    private ImageView dashSettingButton;
+
     private Chip activeChip;
     private Chip completedChip;
 
@@ -76,11 +79,21 @@ public class DashboardActivity extends AppCompatActivity {
         activeSubTextView = findViewById(R.id.textView4);
         activeChip = findViewById(R.id.dashActiveChip);
         completedChip = findViewById(R.id.dashCompletedChip);
+        dashSettingButton = findViewById(R.id.dashSettingButton);
 
         if (sessionManager.isLoggedIn() && sessionManager.getUser() != null) {
             String name = sessionManager.getUser().getFullName();
             greetingTextView.setText("Hello, " + name);
         }
+
+        dashSettingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(DashboardActivity.this, SettingsActivity.class));
+
+            }
+        });
 
         taskAdapter = new TaskAdapter(task -> {
             Intent intent = new Intent(DashboardActivity.this, TaskDetailsActivity.class);
