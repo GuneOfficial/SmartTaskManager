@@ -43,4 +43,5 @@ dependencies {
 
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.31")
     implementation("androidx.gridlayout:gridlayout:1.0.0")
+    implementation ("com.google.code.gson:gson:2.14.0")
 }

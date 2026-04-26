@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/signupTextView1" />
 
             <Button
-                android:id="@+id/signupButton1"
+                android:id="@+id/signupCreateAccountButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -69,7 +69,7 @@
                 app:cornerRadius="15dp"
                 app:layout_constraintEnd_toEndOf="@+id/textInputLayout6"
                 app:layout_constraintStart_toStartOf="@+id/textInputLayout6"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+                app:layout_constraintTop_toBottomOf="@+id/signupAgreement" />
 
             <TextView
                 android:id="@+id/signupTextView6"
@@ -83,8 +83,8 @@
                 android:textAlignment="viewEnd"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/signupTextButton"
-                app:layout_constraintStart_toStartOf="@+id/signupButton1"
-                app:layout_constraintTop_toBottomOf="@+id/signupButton1"
+                app:layout_constraintStart_toStartOf="@+id/signupCreateAccountButton"
+                app:layout_constraintTop_toBottomOf="@+id/signupCreateAccountButton"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -99,7 +99,7 @@
                 android:textColor="#D64545"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/signupTextView6"
-                app:layout_constraintEnd_toEndOf="@+id/signupButton1"
+                app:layout_constraintEnd_toEndOf="@+id/signupCreateAccountButton"
                 app:layout_constraintStart_toEndOf="@+id/signupTextView6"
                 app:layout_constraintTop_toTopOf="@+id/signupTextView6"
                 app:layout_constraintVertical_bias="0.0" />
@@ -171,7 +171,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/signupPasswordInput"
+                    android:id="@+id/signupPasswordConfirmInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_regular"
@@ -179,7 +179,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/signupAgreement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
