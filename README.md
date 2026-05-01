@@ -37,10 +37,10 @@ Base URL: `https://69edac54af4ff533142bd4d7.mockapi.io/api/v1`
 |--------|----------|-------------|
 | GET | `/users?email={email}` | Find user by email (login) |
 | POST | `/users` | Register a new user |
-| GET | `/task?userId={id}` | Get all tasks for a user |
-| POST | `/task` | Create a new task |
-| PUT | `/task/{id}` | Update an existing task |
-| DELETE | `/task/{id}` | Delete a task |
+| GET | `/tasks?userId={id}` | Get all tasks for a user |
+| POST | `/tasks` | Create a new task |
+| PUT | `/tasks/{id}` | Update an existing task |
+| DELETE | `/users/{id}/task/{id}` | Delete a task |
 
 ## Setup and Run Instructions
 

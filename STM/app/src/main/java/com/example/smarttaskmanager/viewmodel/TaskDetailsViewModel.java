@@ -117,7 +117,7 @@ public class TaskDetailsViewModel extends AndroidViewModel {
 
         state.setValue(TaskDetailsState.LOADING);
 
-        taskRepository.deleteTask(current.getId(), new TaskRepository.DeleteTaskCallback() {
+        taskRepository.deleteTask(current.getUserId(),current.getId(), new TaskRepository.DeleteTaskCallback() {
             @Override
             public void onSuccess() {
                 mainHandler.post(() -> state.setValue(TaskDetailsState.DELETED));

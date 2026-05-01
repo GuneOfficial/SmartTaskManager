@@ -20,7 +20,7 @@ import okhttp3.Response;
 
 public class TaskRepository {
 
-    private static final String BASE_URL = "https://69edac54af4ff533142bd4d7.mockapi.io/api/v1/task";
+    private static final String BASE_URL = "https://69edac54af4ff533142bd4d7.mockapi.io/api/v1/";
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
     private final OkHttpClient client = new OkHttpClient();
@@ -38,7 +38,7 @@ public class TaskRepository {
         RequestBody body = RequestBody.create(json, JSON);
 
         Request request = new Request.Builder()
-                .url(BASE_URL)
+                .url(BASE_URL+"tasks")
                 .post(body)
                 .build();
 
@@ -69,7 +69,7 @@ public class TaskRepository {
     }
 
     public void fetchTasksByUser(int userId, FetchTasksCallback callback) {
-        String url = BASE_URL + "?userId=" + userId;
+        String url = BASE_URL+"tasks?userId=" + userId;
 
         Request request = new Request.Builder()
                 .url(url)
@@ -109,7 +109,7 @@ public class TaskRepository {
         RequestBody body = RequestBody.create(json, JSON);
 
         Request request = new Request.Builder()
-                .url(BASE_URL + "/" + task.getId())
+                .url(BASE_URL + "tasks/" + task.getId())
                 .put(body)
                 .build();
 
@@ -139,9 +139,9 @@ public class TaskRepository {
         void onFailure(String error);
     }
 
-    public void deleteTask(String taskId, DeleteTaskCallback callback) {
+    public void deleteTask(int userId,String taskId, DeleteTaskCallback callback) {
         Request request = new Request.Builder()
-                .url(BASE_URL + "/" + taskId)
+                .url(BASE_URL +"users/"+ userId+"/tasks/" + taskId)
                 .delete()
                 .build();
 
